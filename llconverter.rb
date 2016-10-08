@@ -26,8 +26,8 @@ judgeIsWeekend = lambda do |str|
 end
 
 # dataPath = FileAccessor.CalcDataPath
-base_path = '/home/aa/mySvn/800.限行/成果物/发布成果物'
-dataPath = File.join base_path,'20160927'
+base_path = @base_path
+dataPath = File.join base_path,@data_number
 # 输入文件转换
 # holiday_file_name = File.join(dataPath,InputHoliday)
 # main_data_file_name = File.join(dataPath,InputMainData)
@@ -377,7 +377,6 @@ if !File.exist?(detail_file_name)
   excel_file_name = File.join(dataPath,"车牌限行描述数据.xlsx")
   if !File.exist?(excel_file_name)
     puts "没有输入文件!"
-    return 
   end
 
   FileAccessor.ConvertExcel(excel_file_name,detail_file_name)

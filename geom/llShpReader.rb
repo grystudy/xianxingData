@@ -38,7 +38,7 @@ class AreaGeomWrap
 end
 
 require 'rgeo/shapefile'
-require File.join('./',"geoHelper.rb")
+require File.join(File.dirname(__FILE__),"geoHelper.rb")
 factory = GeoHelper.factory
 
 class ::RGeo::Cartesian::PointImpl

@@ -1,20 +1,20 @@
-require 'spreadsheet'
-def write_xlsx(fileName, data)
-	return false if !data
+# require 'spreadsheet'
+# def write_xlsx(fileName, data)
+# 	return false if !data
 
-	dirName=File.dirname(fileName)      
+# 	dirName=File.dirname(fileName)      
 	
-	book = Spreadsheet::Workbook.new
-	sheet1 = book.create_worksheet
-	#行从一开始，列头
-	data.each_with_index do |line,i|
-		line.each_with_index do |col,col_i|
-			sheet1[i+1,col_i]=col
-		end
-	end
-	book.write fileName
-	true
-end
+# 	book = Spreadsheet::Workbook.new
+# 	sheet1 = book.create_worksheet
+# 	#行从一开始，列头
+# 	data.each_with_index do |line,i|
+# 		line.each_with_index do |col,col_i|
+# 			sheet1[i+1,col_i]=col
+# 		end
+# 	end
+# 	book.write fileName
+# 	true
+# end
 
 def output(key_,value_)
 	data_to_excel = []
@@ -37,9 +37,11 @@ def output(key_,value_)
 	if(!File.directory?(dirName))
 		Dir.mkdir(File.dirname(fileName))
 	end
-	write_xlsx(fileName,data_to_excel)
+	# write_xlsx(fileName,data_to_excel)
 
 	fileName = File.join("areaRes/json","#{key_}.txt")
+	dataPath_ = File.join base_path,@data_number
+	fileName = File.join(dataPath_,fileName)
 	dirName=File.dirname(fileName)  	  
 	if(!File.directory?(dirName))
 		Dir.mkdir(File.dirname(fileName))
@@ -50,9 +52,10 @@ def output(key_,value_)
 	end
 end
 
-@shp_file_path = "/home/aa/mySvn/800.限行/成果物/发布成果物/shp"
+# @shp_file_path = "/home/aa/mySvn/800.限行/成果物/发布成果物/shp"
+@shp_file_path = File.join(@base_path,'shp')
 require File.join(File.dirname(__FILE__),"llShpReader.rb")
-return unless @read_result
+raise 'no data found' unless @read_result
 
 hash_issingle_to_data_array = @read_result.map do |e|  
 	e.to_a.group_by do |ele_|
