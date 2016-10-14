@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # require 'spreadsheet'
 # def write_xlsx(fileName, data)
 # 	return false if !data
