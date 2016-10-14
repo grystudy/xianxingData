@@ -72,6 +72,7 @@ file_name_array.each do |file_name_|
 				
 				attri = record.attributes
 				info_id = attri["RINForID"]
+				puts "no info_id !  #{file_name_[:path].encode("UTF-8")} " if info_id == nil || info_id == ""
 				if !hash_city.key?(info_id)
 					lst = []
 					hash_city.store(info_id,lst)

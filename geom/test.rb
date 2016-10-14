@@ -73,7 +73,6 @@ hash_issingle_to_data_array.each do |item_|
 
 		contains_id_array = multi_array.select do |multi_e_|
 			keys = multi_e_.first.split(';')
-
 			if keys.reject!{|temp_| temp_ == key}
 				puts "有重复的合并  #{key}"
 				value.concat multi_e_.last 
@@ -85,6 +84,7 @@ hash_issingle_to_data_array.each do |item_|
 	end
 
 	multi_array.each do |e_|
+		next if e_.first == ""
 		output e_.first,e_.last
 	end
 end
