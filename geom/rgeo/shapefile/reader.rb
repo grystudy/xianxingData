@@ -372,6 +372,7 @@ module RGeo
 
       def _read_next_record # :nodoc:
         length_ = @main_file.read(8).unpack("NN")[1]
+        return nil if length_ > @main_file.size
         data_ = @main_file.read(length_ * 2)
         shape_type_ = data_[0, 4].unpack("V").first
         geometry_ =

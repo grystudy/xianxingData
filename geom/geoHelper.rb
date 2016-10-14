@@ -1,5 +1,7 @@
-require File.join(File.dirname(__FILE__),"rgeo/rgeo/cartesian/interface")
-require File.join(File.dirname(__FILE__),"rgeo/rgeo/cartesian/factory")
+require File.join(File.dirname(__FILE__),"rgeo/rgeo/feature")
+require File.join(File.dirname(__FILE__),"rgeo/rgeo/impl_helper")
+require File.join(File.dirname(__FILE__),"rgeo/rgeo/cartesian")
+
 module GeoHelper
 	@factory = ::RGeo::Cartesian::simple_factory
 	class << self

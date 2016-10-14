@@ -17,66 +17,66 @@ module RGeo
       # See ::RGeo::Cartesian.simple_factory for a list of supported options.
 
       def initialize(opts_ = {})
-        @has_z = opts_[:has_z_coordinate] ? true : false
-        @has_m = opts_[:has_m_coordinate] ? true : false
-        @proj4 = opts_[:proj4]
-        if CoordSys::Proj4.supported?
-          if @proj4.is_a?(::String) || @proj4.is_a?(::Hash)
-            @proj4 = CoordSys::Proj4.create(@proj4)
-          end
-        else
-          @proj4 = nil
-        end
-        srid_ = opts_[:srid]
-        @coord_sys = opts_[:coord_sys]
-        if @coord_sys.is_a?(::String)
-          @coord_sys = begin
-                         CoordSys::CS.create_from_wkt(@coord_sys)
-                       rescue
-                         nil
-                       end
-        end
-        if (!@proj4 || !@coord_sys) && srid_ && (db_ = opts_[:srs_database])
-          entry_ = db_.get(srid_.to_i)
-          if entry_
-            @proj4 ||= entry_.proj4
-            @coord_sys ||= entry_.coord_sys
-          end
-        end
-        srid_ ||= @coord_sys.authority_code if @coord_sys
-        @srid = srid_.to_i
-        @lenient_assertions = opts_[:uses_lenient_assertions] ? true : false
-        @buffer_resolution = opts_[:buffer_resolution].to_i
-        @buffer_resolution = 1 if @buffer_resolution < 1
+        # @has_z = opts_[:has_z_coordinate] ? true : false
+        # @has_m = opts_[:has_m_coordinate] ? true : false
+        # @proj4 = opts_[:proj4]
+        # if CoordSys::Proj4.supported?
+        #   if @proj4.is_a?(::String) || @proj4.is_a?(::Hash)
+        #     @proj4 = CoordSys::Proj4.create(@proj4)
+        #   end
+        # else
+        #   @proj4 = nil
+        # end
+        # srid_ = opts_[:srid]
+        # @coord_sys = opts_[:coord_sys]
+        # if @coord_sys.is_a?(::String)
+        #   @coord_sys = begin
+        #                  CoordSys::CS.create_from_wkt(@coord_sys)
+        #                rescue
+        #                  nil
+        #                end
+        # end
+        # if (!@proj4 || !@coord_sys) && srid_ && (db_ = opts_[:srs_database])
+        #   entry_ = db_.get(srid_.to_i)
+        #   if entry_
+        #     @proj4 ||= entry_.proj4
+        #     @coord_sys ||= entry_.coord_sys
+        #   end
+        # end
+        # srid_ ||= @coord_sys.authority_code if @coord_sys
+        # @srid = srid_.to_i
+        # @lenient_assertions = opts_[:uses_lenient_assertions] ? true : false
+        # @buffer_resolution = opts_[:buffer_resolution].to_i
+        # @buffer_resolution = 1 if @buffer_resolution < 1
 
-        wkt_generator_ = opts_[:wkt_generator]
-        case wkt_generator_
-        when ::Hash
-          @wkt_generator = WKRep::WKTGenerator.new(wkt_generator_)
-        else
-          @wkt_generator = WKRep::WKTGenerator.new(convert_case: :upper)
-        end
-        wkb_generator_ = opts_[:wkb_generator]
-        case wkb_generator_
-        when ::Hash
-          @wkb_generator = WKRep::WKBGenerator.new(wkb_generator_)
-        else
-          @wkb_generator = WKRep::WKBGenerator.new
-        end
-        wkt_parser_ = opts_[:wkt_parser]
-        case wkt_parser_
-        when ::Hash
-          @wkt_parser = WKRep::WKTParser.new(self, wkt_parser_)
-        else
-          @wkt_parser = WKRep::WKTParser.new(self)
-        end
-        wkb_parser_ = opts_[:wkb_parser]
-        case wkb_parser_
-        when ::Hash
-          @wkb_parser = WKRep::WKBParser.new(self, wkb_parser_)
-        else
-          @wkb_parser = WKRep::WKBParser.new(self)
-        end
+        # wkt_generator_ = opts_[:wkt_generator]
+        # case wkt_generator_
+        # when ::Hash
+        #   @wkt_generator = WKRep::WKTGenerator.new(wkt_generator_)
+        # else
+        #   @wkt_generator = WKRep::WKTGenerator.new(convert_case: :upper)
+        # end
+        # wkb_generator_ = opts_[:wkb_generator]
+        # case wkb_generator_
+        # when ::Hash
+        #   @wkb_generator = WKRep::WKBGenerator.new(wkb_generator_)
+        # else
+        #   @wkb_generator = WKRep::WKBGenerator.new
+        # end
+        # wkt_parser_ = opts_[:wkt_parser]
+        # case wkt_parser_
+        # when ::Hash
+        #   @wkt_parser = WKRep::WKTParser.new(self, wkt_parser_)
+        # else
+        #   @wkt_parser = WKRep::WKTParser.new(self)
+        # end
+        # wkb_parser_ = opts_[:wkb_parser]
+        # case wkb_parser_
+        # when ::Hash
+        #   @wkb_parser = WKRep::WKBParser.new(self, wkb_parser_)
+        # else
+        #   @wkb_parser = WKRep::WKBParser.new(self)
+        # end
       end
 
       # Equivalence test.

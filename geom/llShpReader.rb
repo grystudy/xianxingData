@@ -54,17 +54,20 @@ read_result = []
 file_name_array.each do |file_name_|
 	RGeo::Shapefile::Reader.open(file_name_[:path]) do |file|
 		hash_city = {}
-		begin
+		# begin
 			next if !file
 			file.each do |record|
 				if !record
-					puts "no record error !"
+					puts "no record error !  #{file_name_[:path].encode("UTF-8")} "
 					break
 				end
 
 				if !record.geometry
-					puts "ReRead #{file_name_} ------> #{record.index}"
+					# puts "ReRead #{file_name_[:path].encode("UTF-8")} ------> #{record.index}"
 					record = file[record.index]
+				end
+				if !record.geometry
+				  # puts "无形状 #{file_name_[:path].encode("UTF-8")} ------> #{record.index}"
 				end
 				
 				attri = record.attributes
@@ -93,9 +96,9 @@ file_name_array.each do |file_name_|
 				record_wrap.info_wrap_array = [info_wrap]
 
 				if record_wrap.geom.length ==2
-					puts "maybe polygon with hole: 限行信息#{record_wrap.info_id} #{file_name_[:city]} #{record_wrap.admcode} 边个数 #{record_wrap.geom.length }"
+					puts "maybe polygon with hole: 限行信息#{record_wrap.info_id} #{file_name_[:city].encode "UTF-8"} #{record_wrap.admcode} 边个数 #{record_wrap.geom.length }"
 				elsif record_wrap.geom.length ==3	
-					puts "面要素: 限行信息#{record_wrap.info_id} #{file_name_[:city]} #{record_wrap.admcode} 边个数 #{record_wrap.geom.length }"  		
+					puts "面要素: 限行信息#{record_wrap.info_id} #{file_name_[:city].encode "UTF-8"} #{record_wrap.admcode} 边个数 #{record_wrap.geom.length }"  		
 					(1..2).each do |i_geo_|
 						temp_wrap = AreaGeomWrap.new
 						temp_wrap.info_id = record_wrap.info_id
@@ -111,11 +114,11 @@ file_name_array.each do |file_name_|
 
 				lst << record_wrap
 			end
-		rescue NoMethodError => e
-			puts file_name_[:city] + "  发生解析错误"
-			p e
-			next
-		end
+		# rescue NoMethodError => e
+		# 	puts file_name_[:city] + "  发生解析错误"
+		# 	p e
+		# 	next
+		# end
 
 		read_result << hash_city
 	end

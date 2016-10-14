@@ -16,10 +16,10 @@ module RGeo
 end
 
 # Implementation files.
-require "rgeo/cartesian/calculations"
-require "rgeo/cartesian/feature_methods"
-require "rgeo/cartesian/feature_classes"
-require "rgeo/cartesian/factory"
-require "rgeo/cartesian/interface"
-require "rgeo/cartesian/bounding_box"
-require "rgeo/cartesian/analysis"
+require File.join File.dirname(__FILE__),"cartesian/calculations"
+require File.join File.dirname(__FILE__),"cartesian/feature_methods"
+require File.join File.dirname(__FILE__),"cartesian/feature_classes"
+require File.join File.dirname(__FILE__),"cartesian/factory"
+require File.join File.dirname(__FILE__),"cartesian/interface"
+require File.join File.dirname(__FILE__),"cartesian/bounding_box"
+require File.join File.dirname(__FILE__),"cartesian/analysis"
