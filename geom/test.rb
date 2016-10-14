@@ -33,11 +33,11 @@ def output(key_,value_)
 		data_to_excel.concat array_t
 	end
 
-	fileName = File.join("areaRes","#{key_}.xls")
-	dirName=File.dirname(fileName)  	  
-	if(!File.directory?(dirName))
-		Dir.mkdir(File.dirname(fileName))
-	end
+	# fileName = File.join("areaRes","#{key_}.xls")
+	# dirName=File.dirname(fileName)  	  
+	# if(!File.directory?(dirName))
+	# 	Dir.mkdir(File.dirname(fileName))
+	# end
 	# write_xlsx(fileName,data_to_excel)
 
 	fileName = File.join("geom_json","#{key_}.txt")

@@ -63,11 +63,11 @@ file_name_array.each do |file_name_|
 				end
 
 				if !record.geometry
-					# puts "ReRead #{file_name_[:path].encode("UTF-8")} ------> #{record.index}"
+					puts "reread !  #{file_name_[:path].encode("UTF-8")} "
 					record = file[record.index]
 				end
 				if !record.geometry
-				  # puts "无形状 #{file_name_[:path].encode("UTF-8")} ------> #{record.index}"
+				    break
 				end
 				
 				attri = record.attributes
