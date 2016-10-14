@@ -38,7 +38,7 @@ class AreaGeomWrap
 	end
 end
 
-require 'rgeo/shapefile'
+require File.join(File.dirname(__FILE__),"rgeo/shapefile/reader")
 require File.join(File.dirname(__FILE__),"geoHelper.rb")
 factory = GeoHelper.factory
 

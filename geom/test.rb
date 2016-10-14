@@ -53,7 +53,6 @@ def output(key_,value_)
 	end
 end
 
-# @shp_file_path = "/home/aa/mySvn/800.限行/成果物/发布成果物/shp"
 @shp_file_path = File.join(@base_path,'shp')
 require File.join(File.dirname(__FILE__),"llShpReader.rb")
 raise 'no data found' unless @read_result
