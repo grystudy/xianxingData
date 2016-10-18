@@ -1,5 +1,5 @@
 # encoding: UTF-8
-shp_path = @shp_file_path
+shp_path = @shp_file_path.encode('gbk')
 puts "ready to parse #{shp_path}"
 file_name_array = []
 
