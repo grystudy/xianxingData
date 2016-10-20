@@ -40,7 +40,7 @@ def output(key_,value_)
 	# end
 	# write_xlsx(fileName,data_to_excel)
 
-	fileName = File.join("geom_json","#{key_}.txt")
+	fileName = File.join("json","#{key_}.txt")
 	dataPath_ = File.join @base_path,@data_number
 	fileName = File.join(dataPath_,fileName)
 	dirName=File.dirname(fileName)  	  

@@ -67,7 +67,7 @@ file_name_array.each do |file_name_|
 					record = file[record.index]
 				end
 				if !record.geometry
-				    break
+				    next
 				end
 				
 				attri = record.attributes
